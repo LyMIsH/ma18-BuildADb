@@ -5,7 +5,11 @@ public class Scheme {
     private Database db;
     private String name;
 
-    public void addTable(){};
-    public void getTable(){};
-    public void open(){};
+    public Scheme(Database db, String name)
+    {
+
+    }
+
+    public void addTable(String name){}
+    public Table getTable(){return null;}
 }

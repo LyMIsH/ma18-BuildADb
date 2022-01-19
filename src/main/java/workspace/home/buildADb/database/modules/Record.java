@@ -2,11 +2,11 @@ package workspace.home.buildADb.database.modules;
 
 import java.util.Map;
 
-public class Record> {
-    Map<String, ?> values;
+public class Record<T> {
+    Map<String, T> values;
 
-    public <T> void addValue(String name, T value)
+    public void addValue(String name, T value)
     {
-        this.values.put(name,value);
+        this.values.put(name, value);
     }
 }
