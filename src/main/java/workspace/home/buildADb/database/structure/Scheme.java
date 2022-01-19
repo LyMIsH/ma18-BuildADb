@@ -14,8 +14,8 @@ public class Scheme {
         this.name = name;
     }
 
-    public void addTable(String key, String name, List<String> columns) throws IOException {
-        new Table(key, this, name, columns);
+    public Table addTable(String key, String name, List<String> columns) throws IOException {
+        return new Table(key, this, name, columns);
     }
 
     public Table getTable(String name){return null;}
