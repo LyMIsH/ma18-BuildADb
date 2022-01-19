@@ -1,4 +1,4 @@
-package workspace.home.buildADb.database;
+package workspace.home.buildADb.database.structure;
 
 
 public class Scheme {
