@@ -31,10 +31,11 @@ public class Table {
         return name;
     }
 
-    public Table(Scheme scheme, String name) throws IOException {
+    public Table(String key, Scheme scheme, String name, List<String> columns) throws IOException {
         this.name = name;
+        this.key = key;
         this.scheme = scheme;
-        this.columns = new ArrayList<>();
+        this.columns = columns;
         this.records = new ArrayList<>();
 
         TableWriter tableWriter = new TableWriter();

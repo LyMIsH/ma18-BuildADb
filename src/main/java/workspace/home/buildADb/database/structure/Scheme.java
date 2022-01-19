@@ -1,6 +1,10 @@
 package workspace.home.buildADb.database.structure;
 
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Scheme {
     private Database db;
     private String name;
@@ -11,7 +15,10 @@ public class Scheme {
         this.name = name;
     }
 
-    public void addTable(String name){}
+    public void addTable(String key, String name, List<String> columns) throws IOException {
+        new Table(key, this, name, columns);
+    }
+
     public Table getTable(String name){return null;}
     public void deleteTable(){}
 
