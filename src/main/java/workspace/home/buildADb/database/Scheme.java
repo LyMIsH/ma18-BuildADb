@@ -1,15 +1,17 @@
 package workspace.home.buildADb.database;
 
 
-public class Scheme {
-    private Database db;
+public class Scheme<T> {
+    private Database<T> db;
     private String name;
 
-    public Scheme(Database db, String name)
+    public Scheme(Database<T> db, String name)
     {
-
+        this.db = db;
+        this.name = name;
     }
 
     public void addTable(String name){}
-    public Table getTable(){return null;}
+    public Table<T> getTable(){return null;}
+    public void deleteTable(){}
 }
