@@ -5,22 +5,22 @@ import workspace.home.buildADb.database.modules.Record;
 import java.util.List;
 import java.util.Map;
 
-public class Table<T> {
+public class Table {
     List<String> column;
-    List<Record<T>> records;
-    Scheme<T> scheme;
+    List<Record> records;
+    Scheme scheme;
     String key;
     String name;
 
-    public void insert(Record<T> record){};
+    public void insert(Record record){};
 
-    public Record<T> get(String keyVal){return null;}
+    public Record get(String keyVal){return null;}
     // Delete key value match.
     public void delete(String val){}
 
-    public void delete(List<Map<String, T>> conditions){}
+    public void delete(List<Map<String, String>> conditions){}
     // Update key value match.
-    public Record<T> update(String keyVal){return null;}
-    
-    public Record<T> update(List<Map<String, T>> conditions){return null;}
+    public Record update(String keyVal){return null;}
+
+    public Record update(List<Map<String, String>> conditions){return null;}
 }

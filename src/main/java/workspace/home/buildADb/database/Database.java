@@ -1,6 +1,6 @@
 package workspace.home.buildADb.database;
 
-public class Database<T> {
+public class Database {
     private String name;
     private String path;
 
@@ -10,8 +10,8 @@ public class Database<T> {
         this.path = path;
     }
 
-    public Scheme<T> scheme(String name)
+    public Scheme scheme(String name)
     {
-        return new Scheme<>(this, name);
+        return new Scheme(this, name);
     }
 }
