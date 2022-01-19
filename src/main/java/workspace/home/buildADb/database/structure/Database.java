@@ -4,6 +4,14 @@ public class Database {
     private String name;
     private String path;
 
+    public String getName() {
+        return name;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
     public Database(String name, String path)
     {
         this.name = name;

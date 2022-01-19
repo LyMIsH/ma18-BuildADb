@@ -12,6 +12,14 @@ public class Scheme {
     }
 
     public void addTable(String name){}
-    public Table getTable(){return null;}
+    public Table getTable(String name){return null;}
     public void deleteTable(){}
+
+    public String getName() {
+        return name;
+    }
+
+    public Database getDb() {
+        return db;
+    }
 }

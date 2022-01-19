@@ -12,6 +12,18 @@ public class Table {
     String key;
     String name;
 
+    public String getKey() {
+        return key;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Scheme getScheme() {
+        return scheme;
+    }
+
     public void insert(Record record){};
 
     public Record get(String keyVal){return null;}
