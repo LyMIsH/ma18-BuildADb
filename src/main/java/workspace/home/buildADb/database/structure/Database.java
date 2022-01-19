@@ -9,7 +9,7 @@ public class Database {
     }
 
     public String getPath() {
-        return path;
+        return path + '/' + name;
     }
 
     public Database(String name, String path)

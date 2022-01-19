@@ -2,7 +2,6 @@ package workspace.home.buildADb.database.structure;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Scheme {
@@ -25,7 +24,10 @@ public class Scheme {
     public String getName() {
         return name;
     }
-
+    public String getPath()
+    {
+        return this.db.getPath() + '/' + this.name;
+    }
     public Database getDb() {
         return db;
     }

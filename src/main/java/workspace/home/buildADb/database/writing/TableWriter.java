@@ -4,6 +4,7 @@ import workspace.home.buildADb.database.modules.Record;
 import workspace.home.buildADb.database.structure.Scheme;
 import workspace.home.buildADb.database.structure.Table;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,14 +14,21 @@ public class TableWriter implements Writer {
     @Override
     public void write(Table table) throws IOException {
         Scheme scheme = table.getScheme();
-        FileWriter file = new FileWriter(scheme.getDb().getPath());
+        String path = scheme.getPath();
+        File dir = new File(path);
 
-        file.append(String.join(",", table.getColumnNames()));
+        dir.mkdirs();
+        path += '/' + table.getName() + ".csv";
+        FileWriter file = new FileWriter(path, true);
+        BufferedWriter bw = new BufferedWriter(file);
+        bw.write(String.join(",", table.getColumnNames()));
+        bw.newLine();
+
         for (Record record: table.getRecords())
         {
-            file.append(String.join(",", record.getRecordValues()));
-            file.flush();
+            bw.write(String.join(",", record.getRecordValues()));
+            bw.newLine();
         }
-        file.close();
+        bw.close();
     }
 }

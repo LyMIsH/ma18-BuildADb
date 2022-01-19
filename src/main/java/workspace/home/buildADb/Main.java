@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Database db = new Database("Test", "src/main/resources");
+        Database db = new Database("Test", "e:/dbTest");
         try {
             db.scheme("SchemeTest").addTable("ID", "Test", List.of("ID", "Name", "Age", "Hobie"));
         } catch (IOException e) {
