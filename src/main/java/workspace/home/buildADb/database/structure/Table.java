@@ -1,5 +1,6 @@
 package workspace.home.buildADb.database.structure;
 
+import workspace.home.buildADb.database.exceptions.DatabaseException;
 import workspace.home.buildADb.database.exceptions.TableExistsException;
 import workspace.home.buildADb.database.modules.Record;
 import workspace.home.buildADb.database.writing.TableWriter;
@@ -38,16 +39,9 @@ public class Table {
         this.scheme = scheme;
         this.columns = new ArrayList<>(columns);
         this.records = new ArrayList<>();
-        for (int i = 0; i < columns.size(); i++)
-        {
-            if (columns.get(i).equals(key))
-            {
-                this.columns.set(i, "KEY:" + columns.get(i));
-            }
-        }
     }
 
-    public void load(boolean build) throws IOException, TableExistsException {
+    public void load(boolean build) throws IOException, DatabaseException {
         TableWriter tableWriter = new TableWriter();
         tableWriter.write(this, build);
     }

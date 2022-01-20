@@ -23,7 +23,7 @@ public class TableWriter {
         {
             throw new TableExistsException("Table '" + path + "' already exists");
         }
-        FileWriter file = new FileWriter(path, true);
+        FileWriter file = new FileWriter(path);
         BufferedWriter bw = new BufferedWriter(file);
         bw.write(String.join(",", table.getColumnNames()));
         bw.newLine();
