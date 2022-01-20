@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Database db = new Database("Test");
+        Database db = new Database("Db");
         try {
             db.scheme("SchemeTest1").addTable("ID", "Test", List.of("ID", "Name", "Age", "Hobie"),
                     List.of(int.class, String.class, int.class, String.class));

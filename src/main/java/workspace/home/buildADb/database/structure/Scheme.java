@@ -11,11 +11,27 @@ import java.util.List;
 public class Scheme {
     private Database db;
     private String name;
+    private String path;
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public Scheme(){}
+
+    public void setDb(Database db) {
+        this.db = db;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Scheme(Database db, String name)
     {
         this.db = db;
         this.name = name;
+        this.path = this.db.getPath() + File.separator + this.name;
     }
 
     public void addTable(String key, String name, List<String> columns, List<Class<?>> types) throws IOException, DatabaseException {
@@ -33,7 +49,7 @@ public class Scheme {
     }
     public String getPath()
     {
-        return this.db.getPath() + File.separator + this.name;
+        return this.path;
     }
     public Database getDb() {
         return db;

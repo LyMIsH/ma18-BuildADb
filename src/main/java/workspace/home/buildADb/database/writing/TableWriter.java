@@ -23,6 +23,16 @@ public class TableWriter {
         {
             throw new TableExistsException("Table '" + path + "' already exists");
         }
+        else if (build)
+        {
+            MetadataWriter metadataWriter = new MetadataWriter();
+            metadataWriter.write(table.getMetadata());
+        }
+
+        this.writeToFile(path, table);
+    }
+
+    private void writeToFile(String path, Table table) throws IOException {
         FileWriter file = new FileWriter(path);
         BufferedWriter bw = new BufferedWriter(file);
         bw.write(String.join(",", table.getColumnNames()));

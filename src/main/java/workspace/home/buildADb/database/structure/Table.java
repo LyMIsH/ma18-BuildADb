@@ -3,6 +3,7 @@ package workspace.home.buildADb.database.structure;
 import workspace.home.buildADb.database.exceptions.DatabaseException;
 import workspace.home.buildADb.database.exceptions.TableExistsException;
 import workspace.home.buildADb.database.modules.Record;
+import workspace.home.buildADb.database.modules.TableMetadata;
 import workspace.home.buildADb.database.writing.TableWriter;
 
 import java.io.IOException;
@@ -11,14 +12,13 @@ import java.util.List;
 import java.util.Map;
 
 public class Table {
-    List<String> columns;
-    List<Record> records;
-    Scheme scheme;
-    String key;
-    String name;
+    private List<String> columns;
+    private List<Record> records;
+    private TableMetadata metadata;
+
 
     public String getKey() {
-        return key;
+        return this.metadata.getKey();
     }
 
     public List<String> getColumnNames() {
@@ -30,13 +30,15 @@ public class Table {
     }
 
     public String getName() {
-        return name;
+        return this.metadata.getName();
+    }
+
+    public List<Class<?>> getTypes() {
+        return this.metadata.getTypes();
     }
 
     public Table(String key, Scheme scheme, String name, List<String> columns, List<Class<?>> types) throws IOException {
-        this.name = name;
-        this.key = key;
-        this.scheme = scheme;
+        this.metadata = new TableMetadata(name, scheme, types, key);
         this.columns = new ArrayList<>(columns);
         this.records = new ArrayList<>();
     }
@@ -46,8 +48,12 @@ public class Table {
         tableWriter.write(this, build);
     }
 
+    public TableMetadata getMetadata() {
+        return metadata;
+    }
+
     public Scheme getScheme() {
-        return scheme;
+        return this.metadata.getScheme();
     }
 
     public void insert(Record record)

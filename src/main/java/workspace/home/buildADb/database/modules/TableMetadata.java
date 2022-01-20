@@ -1,0 +1,37 @@
+package workspace.home.buildADb.database.modules;
+
+import workspace.home.buildADb.database.structure.Scheme;
+
+import java.util.List;
+
+public class TableMetadata {
+    private String name;
+    private Scheme scheme;
+    private List<Class<?>> types;
+    private String key;
+
+    public String getName() {
+        return name;
+    }
+
+    public Scheme getScheme() {
+        return scheme;
+    }
+
+    public List<Class<?>> getTypes() {
+        return types;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public TableMetadata(){}
+
+    public TableMetadata(String name, Scheme scheme, List<Class<?>> types, String key) {
+        this.name = name;
+        this.scheme = scheme;
+        this.types = types;
+        this.key = key;
+    }
+}
