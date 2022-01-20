@@ -16,7 +16,7 @@ public class Main {
         try {
             db.scheme("SchemeTest1").addTable("ID", "Test", List.of("ID", "Name", "Age", "Hobie"),
                     List.of(int.class, String.class, int.class, String.class));
-            /*Table table = db.scheme("SchemeTest1").getTable("Test");
+            Table table = db.scheme("SchemeTest1").getTable("Test");
             Record record = new Record(table, List.of(new TableValue<>(5), new TableValue<>("Ron")));
             table.insert(record);
             table.load(false);
@@ -24,7 +24,7 @@ public class Main {
             record.addValue("Age", 95);
             record.addValue("Hobie", "Friends");
             table.insert(record);
-            table.load(false);*/
+            table.load(false);
             db.scheme("SchemeTest2").addTable("ID", "Test", List.of("ID", "Name", "Age", "Hobie"),
                     List.of(int.class, String.class, int.class, String.class));
         } catch (IOException | DatabaseException e) {

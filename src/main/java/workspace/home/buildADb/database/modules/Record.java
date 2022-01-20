@@ -11,7 +11,12 @@ public class Record {
     List<String> columns;
     Map<String, String> values;
 
-    public Record(Table table, List<String> values)
+    public Record(Table table) {
+        this.columns = table.getColumnNames();
+        this.values = new HashMap<>();
+    }
+
+    public Record(Table table, List<TableValue<?>> values)
     {
         this.columns = table.getColumnNames();
         this.values = new HashMap<>();
@@ -25,7 +30,7 @@ public class Record {
             }
             else
             {
-                this.values.put(column, values.get(count));
+                this.values.put(column, values.get(count).value.toString());
             }
             count++;
         }
@@ -40,6 +45,7 @@ public class Record {
     {
         return this.values.get(column);
     }
+
     public ArrayList<String> getRecordValues()
     {
         ArrayList<String> sortedValues = new ArrayList<>();

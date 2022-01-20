@@ -12,29 +12,36 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TableReader {
     public Table read(Scheme scheme, String name) throws IOException {
         Reader in = new FileReader(scheme.getPath() + File.separator + name + ".csv");
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.parse(in);
-        boolean firstLine = true;
-
         TableMetadata metadata = scheme.getTableMetaData(name);
         Table table = new Table(metadata.getKey(), metadata.getScheme(),
                 name, metadata.getColumns(), metadata.getTypes());
+
         for (CSVRecord record: records)
         {
-            table.insert(new Record(table, record.toList()));
+            Record newRecord = this.getRecordObject(record, table);
+            table.insert(newRecord);
         }
 
         return table;
     }
 
-/*
-    private Record getRecordObject(CSVRecord record, List<String> columns)
+    private Record getRecordObject(CSVRecord record, Table table)
     {
+        Record recordObj = new Record(table);
+        int count = 0;
 
-    }*/
+        for (String column: table.getColumnNames())
+        {
+            Class<?> type = table.getTypes().get(column);
+            TableValue<?> value = new TableValue<>(type.cast(record.get(count)));
+            recordObj.addValue(column, value);
+            count++;
+        }
+        return recordObj;
+    }
 }

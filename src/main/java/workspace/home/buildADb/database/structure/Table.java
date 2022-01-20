@@ -8,6 +8,7 @@ import workspace.home.buildADb.database.writing.TableWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,8 +33,16 @@ public class Table {
         return this.metadata.getName();
     }
 
-    public List<Class<?>> getTypes() {
-        return this.metadata.getTypes();
+    public HashMap<String, Class<?>> getTypes() {
+        int count = 0;
+        HashMap<String, Class<?>> map = new HashMap<>();
+        for (String column: this.metadata.getColumns())
+        {
+            map.put(column, this.metadata.getTypes().get(count));
+            count++;
+        }
+
+        return map;
     }
 
     public Table(String key, Scheme scheme, String name, List<String> columns, List<Class<?>> types) throws IOException {
