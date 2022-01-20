@@ -68,7 +68,44 @@ public class Table {
         this.records.add(record);
     }
 
-    public Record get(String keyVal){return null;}
+    public ArrayList<Record> get(String key, String val)
+    {
+        return this.get(List.of(new String[][]{{key, val}}));
+        /*
+        ArrayList<Record> matches = new ArrayList<>();
+
+        for (Record record: records)
+        {
+            if (record.getColumnValue(key).equals(val))
+            {
+                matches.add(record);
+            }
+        }
+
+        return records;*/
+    }
+
+    public ArrayList<Record> get(List<String[]> conditions)
+    {
+        ArrayList<Record> matches = new ArrayList<>();
+        boolean passed;
+
+        for (Record record: this.records)
+        {
+            passed = true;
+            for (String[] condition: conditions) {
+                if (!record.getColumnValue(condition[0]).equals(condition[1])) {
+                    passed = false;
+                }
+            }
+            if(passed)
+            {
+                matches.add(record);
+            }
+        }
+
+        return matches;
+    }
     // Delete key value match.
     public void delete(String val){}
 

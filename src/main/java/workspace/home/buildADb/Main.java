@@ -8,6 +8,7 @@ import workspace.home.buildADb.database.structure.Database;
 import workspace.home.buildADb.database.structure.Table;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -21,6 +22,7 @@ public class Main {
             table.insert(record);
             table.load(false);
             table = db.scheme("SchemeTest1").getTable("Test");
+            ArrayList<Record> result = table.get("Name", "Ron");
             record.addValue("Age", 95);
             record.addValue("Hobie", "Friends");
             table.insert(record);
