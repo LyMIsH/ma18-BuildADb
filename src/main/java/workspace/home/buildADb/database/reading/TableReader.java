@@ -2,6 +2,7 @@ package workspace.home.buildADb.database.reading;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import workspace.home.buildADb.database.exceptions.DatabaseException;
 import workspace.home.buildADb.database.modules.Record;
 import workspace.home.buildADb.database.modules.TableMetadata;
 import workspace.home.buildADb.database.modules.TableValue;
@@ -14,7 +15,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 public class TableReader {
-    public Table read(Scheme scheme, String name) throws IOException {
+    public Table read(Scheme scheme, String name) throws IOException, DatabaseException {
         Reader in = new FileReader(scheme.getPath() + File.separator + name + ".csv");
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.parse(in);
         TableMetadata metadata = scheme.getTableMetaData(name);
