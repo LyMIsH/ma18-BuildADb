@@ -33,7 +33,7 @@ public class Table {
         return name;
     }
 
-    public Table(String key, Scheme scheme, String name, List<String> columns) throws IOException {
+    public Table(String key, Scheme scheme, String name, List<String> columns, List<Class<?>> types) throws IOException {
         this.name = name;
         this.key = key;
         this.scheme = scheme;

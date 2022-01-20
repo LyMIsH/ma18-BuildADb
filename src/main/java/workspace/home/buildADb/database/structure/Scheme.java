@@ -2,8 +2,7 @@ package workspace.home.buildADb.database.structure;
 
 
 import workspace.home.buildADb.database.exceptions.DatabaseException;
-import workspace.home.buildADb.database.exceptions.TableExistsException;
-import workspace.home.buildADb.database.writing.TableReader;
+import workspace.home.buildADb.database.reading.TableReader;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,8 +18,8 @@ public class Scheme {
         this.name = name;
     }
 
-    public void addTable(String key, String name, List<String> columns) throws IOException, DatabaseException {
-        new Table(key, this, name, columns).load(true);
+    public void addTable(String key, String name, List<String> columns, List<Class<?>> types) throws IOException, DatabaseException {
+        new Table(key, this, name, columns, types).load(true);
     }
 
     public Table getTable(String name) throws IOException {

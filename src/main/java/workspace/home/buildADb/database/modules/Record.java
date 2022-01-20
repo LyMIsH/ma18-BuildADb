@@ -8,10 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 public class Record {
+    List<String> columns;
     Map<String, String> values;
 
     public Record(Table table, List<TableValue<?>> values)
     {
+        this.columns = table.getColumnNames();
         this.values = new HashMap<>();
         int count = 0;
 
@@ -40,6 +42,11 @@ public class Record {
     }
     public ArrayList<String> getRecordValues()
     {
-        return new ArrayList<>(this.values.values());
+        ArrayList<String> sortedValues = new ArrayList<>();
+        for (String column: this.columns)
+        {
+            sortedValues.add(this.values.get(column));
+        }
+        return sortedValues;
     }
 }
