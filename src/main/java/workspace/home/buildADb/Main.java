@@ -22,13 +22,16 @@ public class Main {
             table.insert(record);
             table.load(false);
             table = db.scheme("SchemeTest1").getTable("Test");
-            ArrayList<Record> result = table.get("Name", "Ron");
+            ArrayList<Record> result = table.get("Name", "5");
             record.addValue("Age", 95);
             record.addValue("Hobie", "Friends");
             table.insert(record);
             table.load(false);
             db.scheme("SchemeTest2").addTable("ID", "Test", List.of("ID", "Name", "Age", "Hobie"),
                     List.of(int.class, String.class, int.class, String.class));
+            table = db.scheme("SchemeTest1").getTable("Test");
+            result = table.get(List.of(new String[][]{{"Name", "Ron"}, {"Age", "95"}}));
+            System.out.println();
         } catch (IOException | DatabaseException e) {
             e.printStackTrace();
         }

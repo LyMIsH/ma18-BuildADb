@@ -71,18 +71,6 @@ public class Table {
     public ArrayList<Record> get(String key, String val)
     {
         return this.get(List.of(new String[][]{{key, val}}));
-        /*
-        ArrayList<Record> matches = new ArrayList<>();
-
-        for (Record record: records)
-        {
-            if (record.getColumnValue(key).equals(val))
-            {
-                matches.add(record);
-            }
-        }
-
-        return records;*/
     }
 
     public ArrayList<Record> get(List<String[]> conditions)
