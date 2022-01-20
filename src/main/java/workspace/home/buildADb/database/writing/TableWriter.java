@@ -18,7 +18,7 @@ public class TableWriter {
         File dir = new File(path);
 
         dir.mkdirs();
-        path += '/' + table.getName() + ".csv";
+        path += File.separator + table.getName() + ".csv";
         if ((new File(path)).exists() && build)
         {
             throw new TableExistsException("Table '" + path + "' already exists");

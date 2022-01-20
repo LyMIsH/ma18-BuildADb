@@ -35,10 +35,15 @@ public class Table {
         this.name = name;
         this.key = key;
         this.scheme = scheme;
-        this.columns = columns;
+        this.columns = new ArrayList<>(columns);
         this.records = new ArrayList<>();
-
-        this.load(true);
+        for (int i = 0; i < columns.size(); i++)
+        {
+            if (columns.get(i).equals(key))
+            {
+                this.columns.set(i, "KEY:" + columns.get(i));
+            }
+        }
     }
 
     public void load(boolean build) throws IOException {

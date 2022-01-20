@@ -1,6 +1,8 @@
 package workspace.home.buildADb.database.structure;
 
 
+import workspace.home.buildADb.database.writing.TableReader;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -15,11 +17,14 @@ public class Scheme {
         this.name = name;
     }
 
-    public Table addTable(String key, String name, List<String> columns) throws IOException {
-        return new Table(key, this, name, columns);
+    public void addTable(String key, String name, List<String> columns) throws IOException {
+        new Table(key, this, name, columns).load(true);
     }
 
-    public Table getTable(String name){return null;}
+    public Table getTable(String name) throws IOException {
+        TableReader tableReader = new TableReader();
+        return tableReader.read(this, name);
+    }
     public void deleteTable(){}
 
     public String getName() {

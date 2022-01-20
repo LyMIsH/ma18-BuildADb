@@ -10,8 +10,9 @@ public class Main {
     public static void main(String[] args) {
         Database db = new Database("Test");
         try {
-            Table table = db.scheme("SchemeTest1").addTable("ID", "Test", List.of("ID", "Name", "Age", "Hobie"));
-            db.scheme("SchemeTest2").addTable("ID", "Test", List.of("ID", "Name", "Age", "Hobie"));
+             db.scheme("SchemeTest1").addTable("ID", "Test", List.of("ID", "Name", "Age", "Hobie"));
+             Table table = db.scheme("SchemeTest1").getTable("Test");
+             db.scheme("SchemeTest2").addTable("ID", "Test", List.of("ID", "Name", "Age", "Hobie"));
         } catch (IOException e) {
             e.printStackTrace();
         }
