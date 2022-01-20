@@ -22,7 +22,7 @@ public class TableReader {
         {
             if (!firstLine)
             {
-                table.insert(new Record());
+                //table.insert(new Record());
             }
             else
             {
