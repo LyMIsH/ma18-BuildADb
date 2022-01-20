@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class Table {
     private List<Record> records;
@@ -95,7 +96,11 @@ public class Table {
         return matches;
     }
     // Delete key value match.
-    public void delete(String val){}
+    public void delete(String val)
+    {
+        Stream<Record> stream = this.records.stream();
+        this.records = stream.filter(item -> !item.getColumnValue(this.getKey()).equals(val)).toList();
+    }
 
     public void delete(List<Map<String, String>> conditions){}
     // Update key value match.
