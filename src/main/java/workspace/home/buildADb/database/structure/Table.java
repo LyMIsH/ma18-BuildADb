@@ -39,7 +39,7 @@ public class Table {
         this.records = new ArrayList<>();
 
         TableWriter tableWriter = new TableWriter();
-        tableWriter.write(this);
+        tableWriter.write(this, true);
     }
 
     public Scheme getScheme() {
