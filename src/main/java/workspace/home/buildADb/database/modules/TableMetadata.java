@@ -8,6 +8,8 @@ public class TableMetadata {
     private String name;
     private Scheme scheme;
     private List<String> columns;
+    private List<Class<?>> types;
+    private String key;
 
     public List<String> getColumns() {
         return columns;
@@ -16,9 +18,6 @@ public class TableMetadata {
     public void setColumns(List<String> columns) {
         this.columns = columns;
     }
-
-    private List<Class<?>> types;
-    private String key;
 
     public String getName() {
         return name;

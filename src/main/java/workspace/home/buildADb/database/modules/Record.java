@@ -38,7 +38,8 @@ public class Record {
 
     public <T> void addValue(String name, T value)
     {
-        this.values.put(name, value.toString());
+        TableValue<T> tableValue = new TableValue<>(value);
+        this.values.put(name, tableValue.value.toString());
     }
 
     public String getColumnValue(String column)

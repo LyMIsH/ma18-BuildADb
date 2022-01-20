@@ -13,6 +13,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.concurrent.Callable;
 
 public class TableReader {
     public Table read(Scheme scheme, String name) throws IOException, DatabaseException {
@@ -21,11 +25,19 @@ public class TableReader {
         TableMetadata metadata = scheme.getTableMetaData(name);
         Table table = new Table(metadata.getKey(), metadata.getScheme(),
                 name, metadata.getColumns(), metadata.getTypes());
+        boolean firstLine = true;
 
         for (CSVRecord record: records)
         {
-            Record newRecord = this.getRecordObject(record, table);
-            table.insert(newRecord);
+            if (firstLine)  // Already have the first line in metadata.
+            {
+                firstLine = false;
+            }
+            else
+            {
+                Record newRecord = this.getRecordObject(record, table);
+                table.insert(newRecord);
+            }
         }
 
         return table;
@@ -39,10 +51,23 @@ public class TableReader {
         for (String column: table.getColumnNames())
         {
             Class<?> type = table.getTypes().get(column);
-            TableValue<?> value = new TableValue<>(type.cast(record.get(count)));
-            recordObj.addValue(column, value);
+            recordObj.addValue(column, this.cast(type, record.get(count)).value);
             count++;
         }
         return recordObj;
+    }
+
+    private TableValue<?> cast(Class<?> type, String item) {
+        HashMap<Class<?>, Callable<?>> parser = new HashMap<>();
+        parser.put(int.class, () -> Integer.parseInt(item));
+        parser.put(Date.class, () -> DateTimeFormatter.ofPattern(item));
+        try
+        {
+            parser.get(type).call();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return new TableValue<>(item);
     }
 }
