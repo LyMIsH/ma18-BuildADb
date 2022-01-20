@@ -31,7 +31,9 @@ public class Main {
                     List.of(int.class, String.class, int.class, String.class));
             table = db.scheme("SchemeTest1").getTable("Test");
             result = table.get(List.of(new String[][]{{"Name", "Ron"}, {"Age", "95"}}));
-            table.delete("5");
+            /*table.delete("5");
+            table.insert(record);
+            table.load(false);*/
             System.out.println();
         } catch (IOException | DatabaseException e) {
             e.printStackTrace();

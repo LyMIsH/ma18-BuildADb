@@ -60,10 +60,14 @@ public class TableReader {
     private TableValue<?> cast(Class<?> type, String item) {
         HashMap<Class<?>, Callable<?>> parser = new HashMap<>();
         parser.put(int.class, () -> Integer.parseInt(item));
+        parser.put(String.class, () -> item);
         parser.put(Date.class, () -> DateTimeFormatter.ofPattern(item));
         try
         {
-            parser.get(type).call();
+            if (!item.isEmpty())
+            {
+                parser.get(type).call();
+            }
         } catch (Exception e)
         {
             e.printStackTrace();
