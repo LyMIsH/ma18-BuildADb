@@ -1,6 +1,7 @@
 package workspace.home.buildADb.database.structure;
 
 
+import workspace.home.buildADb.database.exceptions.TableExistsException;
 import workspace.home.buildADb.database.writing.TableReader;
 
 import java.io.File;
@@ -17,7 +18,7 @@ public class Scheme {
         this.name = name;
     }
 
-    public void addTable(String key, String name, List<String> columns) throws IOException {
+    public void addTable(String key, String name, List<String> columns) throws IOException, TableExistsException {
         new Table(key, this, name, columns).load(true);
     }
 

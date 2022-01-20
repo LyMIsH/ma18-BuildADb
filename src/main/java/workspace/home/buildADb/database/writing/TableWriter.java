@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class TableWriter {
 
-    public void write(Table table, boolean build) throws IOException {
+    public void write(Table table, boolean build) throws IOException, TableExistsException {
         Scheme scheme = table.getScheme();
         String path = scheme.getPath();
         File dir = new File(path);

@@ -1,5 +1,6 @@
 package workspace.home.buildADb.database.structure;
 
+import workspace.home.buildADb.database.exceptions.TableExistsException;
 import workspace.home.buildADb.database.modules.Record;
 import workspace.home.buildADb.database.writing.TableWriter;
 
@@ -46,7 +47,7 @@ public class Table {
         }
     }
 
-    public void load(boolean build) throws IOException {
+    public void load(boolean build) throws IOException, TableExistsException {
         TableWriter tableWriter = new TableWriter();
         tableWriter.write(this, build);
     }
