@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Table {
-    private List<String> columns;
     private List<Record> records;
     private TableMetadata metadata;
 
@@ -22,7 +21,7 @@ public class Table {
     }
 
     public List<String> getColumnNames() {
-        return columns;
+        return this.metadata.getColumns();
     }
 
     public List<Record> getRecords() {
@@ -38,8 +37,7 @@ public class Table {
     }
 
     public Table(String key, Scheme scheme, String name, List<String> columns, List<Class<?>> types) throws IOException {
-        this.metadata = new TableMetadata(name, scheme, types, key);
-        this.columns = new ArrayList<>(columns);
+        this.metadata = new TableMetadata(name, scheme, columns, types, key);
         this.records = new ArrayList<>();
     }
 

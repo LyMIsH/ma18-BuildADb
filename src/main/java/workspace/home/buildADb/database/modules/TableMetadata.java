@@ -7,6 +7,16 @@ import java.util.List;
 public class TableMetadata {
     private String name;
     private Scheme scheme;
+    private List<String> columns;
+
+    public List<String> getColumns() {
+        return columns;
+    }
+
+    public void setColumns(List<String> columns) {
+        this.columns = columns;
+    }
+
     private List<Class<?>> types;
     private String key;
 
@@ -28,9 +38,10 @@ public class TableMetadata {
 
     public TableMetadata(){}
 
-    public TableMetadata(String name, Scheme scheme, List<Class<?>> types, String key) {
+    public TableMetadata(String name, Scheme scheme, List<String> columns, List<Class<?>> types, String key) {
         this.name = name;
         this.scheme = scheme;
+        this.columns = columns;
         this.types = types;
         this.key = key;
     }

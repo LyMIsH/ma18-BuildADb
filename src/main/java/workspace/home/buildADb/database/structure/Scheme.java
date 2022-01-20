@@ -1,7 +1,10 @@
 package workspace.home.buildADb.database.structure;
 
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import workspace.home.buildADb.database.exceptions.DatabaseException;
+import workspace.home.buildADb.database.modules.TableMetadata;
 import workspace.home.buildADb.database.reading.TableReader;
 
 import java.io.File;
@@ -41,6 +44,11 @@ public class Scheme {
     public Table getTable(String name) throws IOException {
         TableReader tableReader = new TableReader();
         return tableReader.read(this, name);
+    }
+    public TableMetadata getTableMetaData(String name) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(new File(this.getDb().getDataPath()),
+                new TypeReference<>(){});
     }
     public void deleteTable(){}
 

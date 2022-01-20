@@ -11,7 +11,7 @@ public class Record {
     List<String> columns;
     Map<String, String> values;
 
-    public Record(Table table, List<TableValue<?>> values)
+    public Record(Table table, List<String> values)
     {
         this.columns = table.getColumnNames();
         this.values = new HashMap<>();
@@ -25,7 +25,7 @@ public class Record {
             }
             else
             {
-                this.values.put(column, values.get(count).value.toString());
+                this.values.put(column, values.get(count));
             }
             count++;
         }
