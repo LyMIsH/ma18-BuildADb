@@ -104,9 +104,20 @@ public class Table {
         this.records = list;
     }
 
-    public void delete(List<Map<String, String>> conditions){}
-    // Update key value match.
-    public Record update(String keyVal){return null;}
+    public void delete(List<String[]> conditions)
+    {
 
-    public Record update(List<Map<String, String>> conditions){return null;}
+    }
+
+    public Record update(List<String[]> conditions, String set, String value)
+    {
+        List<Record> records = this.get(conditions);
+        List<String> changedKeys = new ArrayList<>();
+        for (Record record: records)
+        {
+            record.setColumnValue(set, value);
+            changedKeys.add(record.getColumnValue(this.getKey()));
+        }
+        return null; // Unfinished
+    }
 }

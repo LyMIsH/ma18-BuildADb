@@ -46,6 +46,10 @@ public class Record {
     {
         return this.values.get(column);
     }
+    public void setColumnValue(String column, String val)
+    {
+        this.values.put(column, val);
+    }
 
     public ArrayList<String> getRecordValues()
     {
