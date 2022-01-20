@@ -38,15 +38,22 @@ public class Table {
         this.columns = columns;
         this.records = new ArrayList<>();
 
+        this.load(true);
+    }
+
+    public void load(boolean build) throws IOException {
         TableWriter tableWriter = new TableWriter();
-        tableWriter.write(this, true);
+        tableWriter.write(this, build);
     }
 
     public Scheme getScheme() {
         return scheme;
     }
 
-    public void insert(Record record){};
+    public void insert(Record record)
+    {
+        this.records.add(record);
+    }
 
     public Record get(String keyVal){return null;}
     // Delete key value match.

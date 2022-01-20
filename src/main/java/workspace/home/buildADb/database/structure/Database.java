@@ -1,5 +1,7 @@
 package workspace.home.buildADb.database.structure;
 
+import java.io.File;
+
 public class Database {
     private String name;
     private String path;
@@ -9,13 +11,13 @@ public class Database {
     }
 
     public String getPath() {
-        return path + '/' + name;
+        return path + File.separator + name;
     }
 
-    public Database(String name, String path)
+    public Database(String name)
     {
         this.name = name;
-        this.path = path;
+        this.path = System.getProperty("user.home");
     }
 
     public Scheme scheme(String name)

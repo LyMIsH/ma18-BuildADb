@@ -1,6 +1,8 @@
 package workspace.home.buildADb.database.exceptions;
 
-public class TableExistsException extends Exception{
+import java.io.IOException;
+
+public class TableExistsException extends IOException {
     public TableExistsException(String msg)
     {
         super(msg);

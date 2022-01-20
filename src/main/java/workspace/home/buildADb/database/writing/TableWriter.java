@@ -1,5 +1,6 @@
 package workspace.home.buildADb.database.writing;
 
+import workspace.home.buildADb.database.exceptions.TableExistsException;
 import workspace.home.buildADb.database.modules.Record;
 import workspace.home.buildADb.database.structure.Scheme;
 import workspace.home.buildADb.database.structure.Table;
@@ -18,7 +19,11 @@ public class TableWriter {
 
         dir.mkdirs();
         path += '/' + table.getName() + ".csv";
-        FileWriter file = new FileWriter(path, !build);  // If we build a new table, do not append.
+        if ((new File(path)).exists() && build)
+        {
+            throw new TableExistsException("Table '" + path + "' already exists");
+        }
+        FileWriter file = new FileWriter(path, true);
         BufferedWriter bw = new BufferedWriter(file);
         bw.write(String.join(",", table.getColumnNames()));
         bw.newLine();
